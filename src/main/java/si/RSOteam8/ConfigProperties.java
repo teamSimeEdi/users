@@ -19,4 +19,11 @@ public class ConfigProperties {
     public void setTest(String test){
         this.test = test;
     }
+
+    @ConfigValue(value = "health-demo", watch = true)
+    private String healthdemo;
+
+    public String getHealthdemo() {return healthdemo; }
+    public void setHealthdemo(String hcd){this.healthdemo = hcd;}
+
 }

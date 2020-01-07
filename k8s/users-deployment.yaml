@@ -14,12 +14,24 @@ spec:
     spec:
       containers:
         - name: users
-          image: rsoteam8/users:1.0.0-SNAPSHOT
+          image: rsoteam8/users:1.0.0-SNAPSHOT-12.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8081
               name: server
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 5
 
 ---
 apiVersion: v1
