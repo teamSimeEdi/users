@@ -18,9 +18,6 @@ public class ConfigProperties {
     private String dbuser;
     @ConfigValue(value = "dbpass", watch = true)
     private String dbpass;
-    @ConfigValue(value = "bucketname", watch = true)
-    private String bucketname;
-
 
     public String getTest(){
         return test;
@@ -57,13 +54,5 @@ public class ConfigProperties {
 
     public void setDburl(String dburl) {
         this.dburl = dburl;
-    }
-
-    public String getBucketname() {
-        return bucketname;
-    }
-
-    public void setBucketname(String bucketname) {
-        this.bucketname = bucketname;
     }
 }

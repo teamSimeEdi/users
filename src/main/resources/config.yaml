@@ -1,32 +1,38 @@
 kumuluzee:
-  name: images
+  name: users
   env:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8083
+    base-url: http://localhost:8081
     http:
-      port: 8083
+      port: 8081
   datasources:
     - jndi-name: jdbc/postgres
-      connection-url: jdbc:postgresql://35.227.143.207:5432/images
-      imagename: postgres
+      connection-url: jdbc:postgresql://35.227.143.207:5432/users
+      username: postgres
       password: R2jDsPtgGbCC
       max-pool-size: 20
   config:
     etcd:
-      hosts: http://etcd:2379
+      hosts: http://192.168.99.100:2379
   discovery:
     etcd:
-      hosts: http://etcd:2379
+      hosts: http://192.168.99.100:2379
+  rest-client:
+    registrations:
+      - class: leaderboards
+        url: http://leaderboards:8085
+        connect-timeout: 1000
+        read-timeout: 5000
 
   health:
     checks:
       etcd-health-check:
-        connection-url: http://etcd:2379/health
+        connection-url: http://192.168.99.100:2379/health
   logs:
     config-file: '<?xml version="1.0" encoding="UTF-8"?>
-      <Configuration name="images">
+      <Configuration name="users">
       <Appenders>
       <Console name="console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
@@ -52,10 +58,10 @@ kumuluzee:
   metrics:
     #servlet:
     #  enabled: true
-    #  mapping: /images-metrics
+    #  mapping: /users-metrics
     web-instrumentation:
-      - name: images-endpoint
-        url-pattern: /v1/images/*
+      - name: users-endpoint
+        url-pattern: /v1/users/*
   #streaming:
   #  kafka:
   #    producer:
@@ -83,10 +89,9 @@ kumuluzee:
 config-properties:
   test: true
   health-demo: true
-  dburl: jdbc:postgresql://35.227.143.207:5432/images
+  dburl: jdbc:postgresql://35.227.143.207:5432/users
   dbuser: postgres
   dbpass: R2jDsPtgGbCC
-  bucketname: "images-rsoteam8"
 app-properties:
     amazon-rekognition:
     access-key:
