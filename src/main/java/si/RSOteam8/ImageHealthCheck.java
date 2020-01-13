@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 @Readiness
 @ApplicationScoped
-public class UserHealthCheck implements HealthCheck {
+public class ImageHealthCheck implements HealthCheck {
 
     @Inject
     private ConfigProperties cfg;
@@ -17,18 +17,18 @@ public class UserHealthCheck implements HealthCheck {
     public HealthCheckResponse call() {
         try {
             if (cfg.getHealthdemo().equals("true")){
-                return HealthCheckResponse.up(UserHealthCheck.class.getSimpleName());
+                return HealthCheckResponse.up(ImageHealthCheck.class.getSimpleName());
             }
             else{
-                return HealthCheckResponse.down(UserHealthCheck.class.getSimpleName());
+                return HealthCheckResponse.down(ImageHealthCheck.class.getSimpleName());
 
             }
 
 
         } catch (Exception exception){
-            Logger.getLogger(UserHealthCheck.class.getSimpleName()).warning(exception.getMessage()+" in ");
+            Logger.getLogger(ImageHealthCheck.class.getSimpleName()).warning(exception.getMessage()+" in ");
         }
-        return HealthCheckResponse.down(UserHealthCheck.class.getSimpleName());
+        return HealthCheckResponse.down(ImageHealthCheck.class.getSimpleName());
     }
 
 }

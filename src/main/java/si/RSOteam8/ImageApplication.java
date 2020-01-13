@@ -5,7 +5,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 @RegisterService
-@ApplicationPath("v1")
-public class UserApplication extends Application {
+
+public class ImageApplication extends Application {
 
 }

@@ -1,18 +1,18 @@
 kumuluzee:
-  name: users
+  name: images
   env:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8081
+    base-url: http://localhost:8083
     http:
-      port: 8081
-  #datasources:
-  #  - jndi-name: jdbc/ImageMetadataDS
-  #    connection-url: jdbc:postgresql://192.168.99.100:5432/image-metadata
-  #    username: dbuser
-  #    password: postgres
-  #    max-pool-size: 20
+      port: 8083
+  datasources:
+    - jndi-name: jdbc/postgres
+      connection-url: jdbc:postgresql://35.227.143.207:5432/images
+      imagename: postgres
+      password: R2jDsPtgGbCC
+      max-pool-size: 20
   config:
     etcd:
       hosts: http://etcd:2379
@@ -26,7 +26,7 @@ kumuluzee:
         connection-url: http://etcd:2379/health
   logs:
     config-file: '<?xml version="1.0" encoding="UTF-8"?>
-      <Configuration name="users">
+      <Configuration name="images">
       <Appenders>
       <Console name="console" target="SYSTEM_OUT">
       <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
@@ -52,10 +52,10 @@ kumuluzee:
   metrics:
     #servlet:
     #  enabled: true
-    #  mapping: /users-metrics
+    #  mapping: /images-metrics
     web-instrumentation:
-      - name: users-endpoint
-        url-pattern: /v1/users/*
+      - name: images-endpoint
+        url-pattern: /v1/images/*
   #streaming:
   #  kafka:
   #    producer:
@@ -83,6 +83,10 @@ kumuluzee:
 config-properties:
   test: true
   health-demo: true
+  dburl: jdbc:postgresql://35.227.143.207:5432/images
+  dbuser: postgres
+  dbpass: R2jDsPtgGbCC
+  bucketname: "images-rsoteam8"
 app-properties:
     amazon-rekognition:
     access-key:
